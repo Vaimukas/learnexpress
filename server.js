@@ -29,6 +29,10 @@ app.get('/contact', (req, res) => {
   res.render('contact.njk');
 });
 
+app.get('/form', (req, res) => {
+  res.render('form.njk');
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://127.0.0.1:3000 ${port}`)
 })
