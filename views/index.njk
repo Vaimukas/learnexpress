@@ -2,4 +2,10 @@
   {%block title %} Home {%endblock%}
   {% block content %}
     <h1>Hello maailm!</h1>
+    <h1> Hello {{ name }}! You are {{ age }} years old! </h1>
+    <ul>
+      {% for fruit in fruits %}
+      <li> {{ fruit }} </li>
+      {% endfor %}
+    </ul>
    {% endblock %}
