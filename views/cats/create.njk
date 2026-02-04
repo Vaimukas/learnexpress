@@ -1,0 +1,36 @@
+  {% extends 'partials/layout.njk' %}
+  {%block title %} New cat {%endblock%}
+  {% block content %}
+    <h1>New cat</h1>
+    <form action="/cats" method="POST">
+     <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input name="name" type="text" class="form-control" id="name" placeholder="Mittens">
+    </div>
+    <div class="mb-3">
+      <label for="birthyear" class="form-label">Birth year</label>
+      <input name="birthyear" type="number" class="form-control" id="birthyear" placeholder="year">
+    </div>
+    <div class="mb-3">
+      <label for="gender" class="form-label">Gender</label>
+      <select name="gender" class="form-select" id="gender">
+      <option disabled selected> Select gender </option>
+      <option> Male </option>
+      <option> Female </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="color" class="form-label">Color</label>
+      <input name="color" type="text" class="form-control" id="color" placeholder="Orange">
+    </div>
+    <div class="mb-3">
+      <label for="eyes" class="form-label">Eye color</label>
+      <input name="eyes" type="text" class="form-control" id="eyes" placeholder="Blue">
+    </div>
+    <div class="mb-3">
+      <label for="spayed" class="form-label">Spayed</label>
+      <input name="spayed" type="checkbox" class="form-check-input" id="spayed" placeholder="Orange">
+    </div>
+
+    <button class="btn btn-primary"> Add cat </button>
+   {% endblock %}

@@ -1,0 +1,46 @@
+  {% extends 'partials/layout.njk' %}
+  {%block title %} Edit {%endblock%}
+  {% block content %}
+    <h1>Edit</h1>
+    <form action="/cats/edit?id={{cat.id}}" method="POST">
+     <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input value="{{cat.name}}" name="name" type="text" class="form-control" id="name" placeholder="Mittens">
+    </div>
+    <div class="mb-3">
+      <label for="birthyear" class="form-label">Birth year</label>
+      <input value="{{cat.birthyear}}" name="birthyear" type="number" class="form-control" id="birthyear" placeholder="year">
+    </div>
+    <div class="mb-3">
+      <label for="gender" class="form-label">Gender</label>
+      <select name="gender" class="form-select" id="gender">
+
+      <option disabled> Select gender </option>
+      {% if cat.gender == 'Male' %}
+      <option selected> Male </option>
+      {% else %}
+      <option> Male </option>
+      {% endif %}
+
+      {% if cat.gender == 'Female' %}
+      <option selected> Female </option>
+      {% else %}
+      <option> Female </option>
+      {% endif %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="color" class="form-label">Color</label>
+      <input value="{{cat.color}}" name="color" type="text" class="form-control" id="color" placeholder="Orange">
+    </div>
+    <div class="mb-3">
+      <label for="eyes" class="form-label">Eye color</label>
+      <input value="{{cat.eyes}}" name="eyes" type="text" class="form-control" id="eyes" placeholder="Blue">
+    </div>
+    <div class="mb-3">
+      <label for="spayed" class="form-label">Spayed</label>
+      <input {% if cat.spayed %}checked{% endif %} name="spayed" type="checkbox" class="form-check-input" id="spayed" placeholder="Orange">
+    </div>
+
+    <button class="btn btn-primary"> Update cat </button>
+   {% endblock %}

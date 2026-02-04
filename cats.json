@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Kilu",
+    "birthyear": 2025,
+    "gender": "female",
+    "color": "turtleshell",
+    "eyes": "green",
+    "spayed": false
+  },
+  {
+    "id": 2,
+    "name": "Gafield",
+    "birthyear": 1978,
+    "gender": "male",
+    "color": "orange",
+    "eyes": "green",
+    "spayed": true
+  },
+  {
+    "name": "kisu",
+    "birthyear": 1234,
+    "gender": "Female",
+    "color": "green",
+    "eyes": "yello",
+    "spayed": true,
+    "id": 3
+  },
+  {
+    "name": "kisu",
+    "birthyear": 1234,
+    "gender": "Female",
+    "color": "green",
+    "eyes": "yello",
+    "spayed": true,
+    "id": 4
+  },
+  {
+    "name": "Kilu",
+    "birthyear": 2025,
+    "gender": "Female",
+    "color": "turtleshell",
+    "eyes": "green",
+    "id": 5,
+    "spayed": false
+  }
+]

@@ -1,0 +1,64 @@
+{% extends 'partials/layout.njk' %}
+{% block title %}Answers{% endblock %}
+{% block content %}
+  <h1>Answers</h1>
+  <table class="table">
+    <tbody>
+
+      <tr>
+        <th>Name</th>
+        <td>{{ name }}</td>
+      </tr>
+
+      <tr>
+        <th>Bio</th>
+        <td>{{ bio }}</td>
+      </tr>
+
+      <tr>
+        <th>Age</th>
+        <td>{{ age }}</td>
+      </tr>
+      
+      <tr>
+        <th>Birth day</th>
+        <td>{{ bday }}</td>
+      </tr>
+
+      <tr>
+        <th>Favorite Color</th>
+        <td>{{ favcolor }}</td>
+      </tr>
+
+      <tr>
+        <th>Are you cool?</th>
+        <td>{{ cool }}</td>
+      </tr>
+
+      <tr>
+        <th>Starter pokemon</th>
+        <td>{{ pokemon }}</td>
+      </tr>
+
+      <tr>
+        <th>Food Order</th>
+        <td>{{ food }}</td>
+      </tr>
+
+      <tr>
+        <th>Favorite Fruit</th>
+        <td>{{ fruit }}</td>
+      </tr>
+
+      <tr>
+        <th>Known Languages</th>
+        <td>{{ lang }}</td>
+      </tr>
+
+      <tr>
+        <th>Likes</th>
+        <td>{{ like }}</td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
