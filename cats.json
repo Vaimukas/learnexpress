@@ -27,21 +27,12 @@
     "id": 3
   },
   {
-    "name": "kisu",
-    "birthyear": 1234,
-    "gender": "Female",
-    "color": "green",
-    "eyes": "yello",
-    "spayed": true,
-    "id": 4
-  },
-  {
     "name": "Kilu",
     "birthyear": 2025,
     "gender": "Female",
     "color": "turtleshell",
     "eyes": "green",
-    "id": 5,
+    "id": 4,
     "spayed": false
   }
 ]
