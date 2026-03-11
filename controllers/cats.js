@@ -53,6 +53,20 @@ router.post('/edit', (req, res) => {
   res.redirect('/cats');
 });
 
+router.post('/create', async (req, res) => {
+await prisma.cat.create({
+  data: {
+    name: req.body.name,
+    birthyear: parseInt(req.body.birthyear),
+    gender: req.body.gender,
+    color: req.body.color,
+    eyes: req.body.eyes,
+    spayed: req.body.spayed === 'on' ? true : false
+  },
+});
+res.redirect('/cats');
+});
+
 router.get('/delete', (req, res) => {
   let data = fs.readFileSync('cats.json', {encoding: 'utf-8'});
   let cats = JSON.parse(data);
