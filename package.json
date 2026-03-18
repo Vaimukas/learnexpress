@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e js,njk,json ./server.js localhost 3000"
+    "start": "nodemon -e js,json,njk ./server.js localhost 3000"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +15,7 @@
     "@prisma/client": "^7.4.2",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {

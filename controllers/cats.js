@@ -1,80 +1,75 @@
-import express from 'express';
-import fs from 'fs';
-import { prisma } from '../lib/prisma.js';
+import express from "express";
+import fs from "fs";
+import { prisma } from "../lib/prisma.js";
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  let cats = await prisma.cat.findMany();
-  res.render('cats/index.njk', {cats});
+router.get("", async (req, res) => {
+  console.log(req.session.userId);
+  let count = await prisma.cat.count();
+  let perPage = 10;
+  let pages = Math.ceil(count / perPage);
+  let currentPage = parseInt(req.query.page ?? 1);
+  let skip = perPage * (currentPage-1);
+  let cats = await prisma.cat.findMany({
+    take: perPage,
+    skip: skip,
+  });
+  res.render("cats/index.njk", { cats, pages, currentPage });
 });
 
-router.get('/create', (req, res) => {
-  res.render('cats/create.njk');
+router.get("/create", (req, res) => {
+  res.render("cats/create.njk");
 });
 
-router.post('/', (req, res) => {
-  let data = fs.readFileSync('cats.json', {encoding: 'utf-8'});
-  let cats = JSON.parse(data);
-  let lastId = cats[cats.length-1].id;
-  let newCat = req.body;
-  newCat.id = lastId + 1;
-  newCat.birthyear = parseInt(newCat.birthyear);
-  newCat.spayed = newCat.spayed === 'on' ? true : false;
-  cats.push(newCat);
-  fs.writeFileSync('cats.json', JSON.stringify(cats, null, 2));
-  res.redirect('/cats');
+router.post("", async (req, res) => {
+  await prisma.cat.create({
+    data: {
+      name: req.body.name,
+      birthyear: parseInt(req.body.birthyear),
+      gender: req.body.gender,
+      color: req.body.color,
+      eyes: req.body.eyes,
+      spayed: req.body.spayed === "on" ? true : false,
+    },
+  });
+  res.redirect("/cats");
 });
 
-router.get('/view', (req, res) => {
-  let data = fs.readFileSync('cats.json', {encoding: 'utf-8'});
-  let cats = JSON.parse(data);
-  let cat = cats.find(cat => cat.id == req.query.id);
-  res.render('cats/view.njk', {cat});
+router.get("/view", async (req, res) => {
+  const cat = await prisma.cat.findUnique({
+    where: { id: parseInt(req.query.id) },
+  });
+  res.render("cats/view.njk", { cat });
 });
 
-router.get('/edit', (req, res) => {
-  let data = fs.readFileSync('cats.json', {encoding: 'utf-8'});
-  let cats = JSON.parse(data);
-  let cat = cats.find(cat => cat.id == req.query.id);
-  res.render('cats/edit.njk', {cat});
+router.get("/edit", async (req, res) => {
+  const cat = await prisma.cat.findUnique({
+    where: { id: parseInt(req.query.id) },
+  });
+  res.render("cats/edit.njk", { cat });
 });
 
-router.post('/edit', (req, res) => {
-  let data = fs.readFileSync('cats.json', {encoding: 'utf-8'});
-  let cats = JSON.parse(data);
-  let cat = req.body;
-  cat.id = parseInt(req.query.id);
-  cat.birthyear = parseInt(cat.birthyear);
-  cat.spayed = cat.spayed === 'on' ? true : false;
-  let pos = cats.findIndex(cat => cat.id == req.query.id);
-  cats.splice(pos, 1, cat);
-  fs.writeFileSync('cats.json', JSON.stringify(cats, null, 2));
-  res.redirect('/cats');
+router.post("/edit",async (req, res) => {
+  await prisma.cat.update({
+    where: { id: parseInt(req.query.id) },
+    data: {
+      name: req.body.name,
+      birthyear: parseInt(req.body.birthyear),
+      gender: req.body.gender,
+      color: req.body.color,
+      eyes: req.body.eyes,
+      spayed: req.body.spayed === "on" ? true : false,
+    },
+  });
+  res.redirect("/cats");
 });
 
-router.post('/create', async (req, res) => {
-await prisma.cat.create({
-  data: {
-    name: req.body.name,
-    birthyear: parseInt(req.body.birthyear),
-    gender: req.body.gender,
-    color: req.body.color,
-    eyes: req.body.eyes,
-    spayed: req.body.spayed === 'on' ? true : false
-  },
+router.get("/delete",async (req, res) => {
+  await prisma.cat.delete({
+    where: { id: parseInt(req.query.id) },
+  });
+  res.redirect("/cats");
 });
-res.redirect('/cats');
-});
-
-router.get('/delete', (req, res) => {
-  let data = fs.readFileSync('cats.json', {encoding: 'utf-8'});
-  let cats = JSON.parse(data);
-  let pos = cats.findIndex(cat => cat.id == req.query.id);
-  cats.splice(pos, 1);
-  fs.writeFileSync('cats.json', JSON.stringify(cats, null, 2));
-  res.redirect('/cats');
-});
-
 
 export default router;

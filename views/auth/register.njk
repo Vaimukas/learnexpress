@@ -1,0 +1,33 @@
+  {% extends 'partials/layout.njk' %}
+  {%block title %} Register {%endblock%}
+  {% block content %}
+    <h1>Register</h1>
+    <form action="/register" method="POST">
+     <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input name="name" type="text" class="form-control" id="name" placeholder="John Smith">
+    </div>
+    
+    <form action="/register" method="POST">
+     <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input name="email" type="email" class="form-control" id="email" placeholder="john@example.com">
+    </div>
+
+    <form action="/register" method="POST">
+     <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input name="password" type="password" class="form-control" id="password" placeholder="Enter your password">
+    </div>
+
+    <form action="/register" method="POST">
+     <div class="mb-3">
+      <label for="password_confirm" class="form-label">Confirm Password</label>
+      <input name="password_confirm" type="password" class="form-control" id="password_confirm" placeholder="Confirm your password">
+    </div>
+
+
+
+
+    <button class="btn btn-primary"> Register </button>
+   {% endblock %}
